@@ -42,14 +42,14 @@ if (!defined('ADMINIFY_MENU_EDITOR_URI')) define('ADMINIFY_MENU_EDITOR_URI', $ad
 
 
 
-if (!class_exists('\\MenuEditorAdminify\\Adminify_Menu_Editor')) {
+if (!class_exists('\\MenuEditorAdminify\\MenuFlex')) {
     // Autoload
     require_once dirname(__FILE__) . '/vendor/autoload.php';
 
     // Instantiate WP Adminify Class
-    require_once dirname(__FILE__) . '/class-adminify-menu-editor.php';
+    require_once dirname(__FILE__) . '/class-menuflex.php';
 
     // Activation and Deactivation hooks
-    register_activation_hook(ADMINIFY_MENU_EDITOR_FILE, array('\\MenuEditorAdminify\\Adminify_Menu_Editor', 'menu_editor_adminify_activation_hook'));
-    register_deactivation_hook(ADMINIFY_MENU_EDITOR_FILE, array('\\MenuEditorAdminify\\Adminify_Menu_Editor', 'menu_editor_adminify_deactivation_hook'));
+    register_activation_hook(ADMINIFY_MENU_EDITOR_FILE, array('\\MenuEditorAdminify\\MenuFlex', 'menu_editor_adminify_activation_hook'));
+    register_deactivation_hook(ADMINIFY_MENU_EDITOR_FILE, array('\\MenuEditorAdminify\\MenuFlex', 'menu_editor_adminify_deactivation_hook'));
 }

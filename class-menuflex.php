@@ -7,9 +7,9 @@ use MenuEditorAdminify\Inc\MenuEditor;
 // No, Direct access Sir !!!
 if (!defined('ABSPATH')) exit;
 
-if (!class_exists('Adminify_Menu_Editor')) {
+if (!class_exists('MenuFlex')) {
 
-    class Adminify_Menu_Editor
+    class MenuFlex
     {
 
         const VERSION = ADMINIFY_MENU_EDITOR_VER;
@@ -112,13 +112,13 @@ if (!class_exists('Adminify_Menu_Editor')) {
 
         public static function get_instance()
         {
-            if (!isset(self::$instance) && !(self::$instance instanceof Adminify_Menu_Editor)) {
-                self::$instance = new Adminify_Menu_Editor();
+            if (!isset(self::$instance) && !(self::$instance instanceof MenuFlex)) {
+                self::$instance = new MenuFlex();
                 self::$instance->adminify_menu_editor_init();
             }
 
             return self::$instance;
         }
     }
-    Adminify_Menu_Editor::get_instance();
+    MenuFlex::get_instance();
 }
