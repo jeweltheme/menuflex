@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Plugin Name: MenuX
+ * Plugin Name: MenuFlex
  * Description: WordPress Menu Editor was never been easy with exclusive features like User Roles, Custom Icon, Live Menu Item Change and many more
  * Plugin URI: https://wpadminify.com/menu-editor/
  * Author: Jewel Theme

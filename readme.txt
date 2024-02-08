@@ -1,4 +1,4 @@
-=== Admin Menu Editor ===
+=== MenuFlex ===
 Contributors: jwthemeltd, litonice13
 Tags: Admin menu editor, Menu Editor, admin, menu, editor, customize, reorder, rename, hide, add
 Requires at least: 4.0
@@ -36,7 +36,7 @@ Admin Menu Editor is compatible with most WordPress plugins and themes that add 
 
 To install Admin Menu Editor, follow these steps:
 
-1. Upload the admin-menu-editor folder to the /wp-content/plugins/ directory.
+1. Upload the menuflex folder to the /wp-content/plugins/ directory.
 2. Activate the plugin through the Plugins -> Installed Plugins menu in WordPress.
 3. Go to WP-Admin -> Admin Menu Editor to start editing your admin menu.
 
