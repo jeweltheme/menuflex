@@ -76,7 +76,7 @@ if (!class_exists('MenuFlex')) {
         // Text Domains
         public function adminify_menu_editor_load_textdomain()
         {
-            $domain = 'menu-editor-adminify';
+            $domain = 'menuflex';
             $locale = apply_filters('plugin_locale', get_locale(), $domain);
 
             load_textdomain($domain, WP_LANG_DIR . '/' . $domain . '/' . $domain . '-' . $locale . '.mo');

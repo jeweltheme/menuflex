@@ -630,7 +630,7 @@ if (!class_exists('MenuEditor')) {
                 __('Menu Editor by WP Adminify', ADMINIFY_MENU_EDITOR_TD),
                 __('Menu Editor', ADMINIFY_MENU_EDITOR_TD),
                 apply_filters('jltwp_adminify_capability', 'manage_options'),
-                'menu-editor-adminify',
+                'menuflex',
                 [$this, 'jltwp_adminify_menu_editor_contents'],
                 ADMINIFY_MENU_EDITOR_ASSETS_IMAGE . 'menu-icon.png',
                 30

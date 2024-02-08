@@ -22,7 +22,7 @@ class MenuEditorAssets extends MenuEditorModel
     public function menu_editor_enqueue_scripts()
     {
         // Register Styles
-        wp_register_style('menu-editor-adminify', ADMINIFY_MENU_EDITOR_ASSETS . 'css/menu-editor-adminify.css', false, ADMINIFY_MENU_EDITOR_VER);
+        wp_register_style('menuflex', ADMINIFY_MENU_EDITOR_ASSETS . 'css/menu-editor-adminify.css', false, ADMINIFY_MENU_EDITOR_VER);
         wp_register_style('menu-editor-adminify-tokenize2', ADMINIFY_MENU_EDITOR_ASSETS . 'vendors/tokenize/tokenize2.min.css', false, ADMINIFY_MENU_EDITOR_VER);
         wp_register_style('menu-editor-adminify-icon-picker', ADMINIFY_MENU_EDITOR_ASSETS . 'vendors/adminify-icon-picker/css/style.css', false, ADMINIFY_MENU_EDITOR_VER);
         wp_register_style('menu-editor-adminify-custom-menu', ADMINIFY_MENU_EDITOR_ASSETS . 'css/menu-editor-adminify-custom-menu.css', false, ADMINIFY_MENU_EDITOR_VER);
@@ -35,22 +35,22 @@ class MenuEditorAssets extends MenuEditorModel
         // Register Scripts
         wp_register_script('menu-editor-adminify-icon-picker', ADMINIFY_MENU_EDITOR_ASSETS . 'vendors/adminify-icon-picker/js/adminify-icon-picker.js',  ['jquery'], ADMINIFY_MENU_EDITOR_VER, true);
         wp_register_script('menu-editor-adminify-tokenize2', ADMINIFY_MENU_EDITOR_ASSETS . 'vendors/tokenize/tokenize2.min.js', ['jquery'], ADMINIFY_MENU_EDITOR_VER, false);
-        wp_register_script('menu-editor-adminify', ADMINIFY_MENU_EDITOR_ASSETS . 'js/menu-editor-adminify.js',  ['jquery', 'jquery-ui-sortable', 'menu-editor-adminify-icon-picker'], ADMINIFY_MENU_EDITOR_VER, true);
+        wp_register_script('menuflex', ADMINIFY_MENU_EDITOR_ASSETS . 'js/menu-editor-adminify.js',  ['jquery', 'jquery-ui-sortable', 'menu-editor-adminify-icon-picker'], ADMINIFY_MENU_EDITOR_VER, true);
 
 
         global $pagenow;
-        if (('admin.php' === $pagenow) && ('menu-editor-adminify' === $_GET['page'])) {
+        if (('admin.php' === $pagenow) && ('menuflex' === $_GET['page'])) {
             $this->import_css();
 
             // Enqueue Styles
             wp_enqueue_style('menu-editor-adminify-icon-picker');
             wp_enqueue_style('menu-editor-adminify-tokenize2');
-            wp_enqueue_style('menu-editor-adminify');
+            wp_enqueue_style('menuflex');
 
             // Enqueue Scripts
             wp_enqueue_script('menu-editor-adminify-icon-picker');
             wp_enqueue_script('menu-editor-adminify-tokenize2');
-            wp_enqueue_script('menu-editor-adminify');
+            wp_enqueue_script('menuflex');
         }
 
         wp_enqueue_style('menu-editor-adminify-custom-menu');
@@ -80,7 +80,7 @@ class MenuEditorAssets extends MenuEditorModel
             'icon_picker_logo' => ADMINIFY_MENU_EDITOR_ASSETS_IMAGE . 'menu-icon.png',
             'security'         => wp_create_nonce('menu-editor-adminify-security-nonce'),
         );
-        wp_localize_script('menu-editor-adminify', 'MenuEditorAdminify', $localize_menu_data);
+        wp_localize_script('menuflex', 'MenuEditorAdminify', $localize_menu_data);
     }
 
     /**Import Menu CSS */

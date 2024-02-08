@@ -7,7 +7,7 @@
  * Author: Jewel Theme
  * Version: 1.0.0
  * Author URI: https://wpadminify.com
- * Text Domain: menu-editor-adminify
+ * Text Domain: menuflex
  * Domain Path: /languages
  */
 
@@ -27,7 +27,7 @@ $adminify_menu_editor_plugin_data     = get_file_data(__FILE__,  array(
 // Define Constants
 if (!defined('ADMINIFY_MENU_EDITOR')) define('ADMINIFY_MENU_EDITOR', $adminify_menu_editor_plugin_data['Plugin Name']);
 if (!defined('ADMINIFY_MENU_EDITOR_VER')) define('ADMINIFY_MENU_EDITOR_VER', $adminify_menu_editor_plugin_data['Version']);
-if (!defined('ADMINIFY_MENU_EDITOR_TD')) define('ADMINIFY_MENU_EDITOR_TD', 'menu-editor-adminify');
+if (!defined('ADMINIFY_MENU_EDITOR_TD')) define('ADMINIFY_MENU_EDITOR_TD', 'menuflex');
 if (!defined('ADMINIFY_MENU_EDITOR_FILE')) define('ADMINIFY_MENU_EDITOR_FILE', __FILE__);
 if (!defined('ADMINIFY_MENU_EDITOR_BASE')) define('ADMINIFY_MENU_EDITOR_BASE', plugin_basename(__FILE__));
 if (!defined('ADMINIFY_MENU_EDITOR_PATH')) define('ADMINIFY_MENU_EDITOR_PATH', trailingslashit(plugin_dir_path(__FILE__)));
