@@ -1,6 +1,6 @@
 <?php
 
-namespace MenuEditorAdminify\Inc;
+namespace MenuFlex\Inc;
 
 use WPAdminify\Inc\Base_Model;
 

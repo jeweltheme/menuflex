@@ -9,6 +9,8 @@
  * Author URI: https://wpadminify.com
  * Text Domain: menuflex
  * Domain Path: /languages
+ * License:     GPLv3 or later
+ * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  */
 
 
@@ -27,7 +29,6 @@ $adminify_menu_editor_plugin_data     = get_file_data(__FILE__,  array(
 // Define Constants
 if (!defined('ADMINIFY_MENU_EDITOR')) define('ADMINIFY_MENU_EDITOR', $adminify_menu_editor_plugin_data['Plugin Name']);
 if (!defined('ADMINIFY_MENU_EDITOR_VER')) define('ADMINIFY_MENU_EDITOR_VER', $adminify_menu_editor_plugin_data['Version']);
-if (!defined('ADMINIFY_MENU_EDITOR_TD')) define('ADMINIFY_MENU_EDITOR_TD', 'menuflex');
 if (!defined('ADMINIFY_MENU_EDITOR_FILE')) define('ADMINIFY_MENU_EDITOR_FILE', __FILE__);
 if (!defined('ADMINIFY_MENU_EDITOR_BASE')) define('ADMINIFY_MENU_EDITOR_BASE', plugin_basename(__FILE__));
 if (!defined('ADMINIFY_MENU_EDITOR_PATH')) define('ADMINIFY_MENU_EDITOR_PATH', trailingslashit(plugin_dir_path(__FILE__)));
@@ -42,7 +43,7 @@ if (!defined('ADMINIFY_MENU_EDITOR_URI')) define('ADMINIFY_MENU_EDITOR_URI', $ad
 
 
 
-if (!class_exists('\\MenuEditorAdminify\\MenuFlex')) {
+if (!class_exists('\\MenuFlex\\MenuFlex')) {
     // Autoload
     require_once dirname(__FILE__) . '/vendor/autoload.php';
 
@@ -50,6 +51,6 @@ if (!class_exists('\\MenuEditorAdminify\\MenuFlex')) {
     require_once dirname(__FILE__) . '/class-menuflex.php';
 
     // Activation and Deactivation hooks
-    register_activation_hook(ADMINIFY_MENU_EDITOR_FILE, array('\\MenuEditorAdminify\\MenuFlex', 'menu_editor_adminify_activation_hook'));
-    register_deactivation_hook(ADMINIFY_MENU_EDITOR_FILE, array('\\MenuEditorAdminify\\MenuFlex', 'menu_editor_adminify_deactivation_hook'));
+    register_activation_hook(ADMINIFY_MENU_EDITOR_FILE, array('\\MenuFlex\\MenuFlex', 'menu_editor_adminify_activation_hook'));
+    register_deactivation_hook(ADMINIFY_MENU_EDITOR_FILE, array('\\MenuFlex\\MenuFlex', 'menu_editor_adminify_deactivation_hook'));
 }

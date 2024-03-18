@@ -67,7 +67,7 @@
     };
 
     Object.entries(icons_libraries).forEach(([key, value]) => {
-        if( MenuEditorAdminify.assets_manager.includes( key )){
+        if( MenuFlex.assets_manager.includes( key )){
             delete MenuEditonIconsLibrary[value];
         }
     });
@@ -82,11 +82,11 @@
     $('.menu_editor_adminify_reset_menu_settings').on('click', function(e){
         e.preventDefault();
         $.ajax({
-            url: MenuEditorAdminify.ajax_url,
+            url: MenuFlex.ajax_url,
             type: "post",
             data: {
             action: "menu_editor_adminify_reset_menu_settings",
-            security: MenuEditorAdminify.security,
+            security: MenuFlex.security,
             },
             success: function (response) {
             if (response) {
@@ -105,11 +105,11 @@
     // Export Menu Settings
     $('.adminify_export_menu_settings').on('click', function(e){
         $.ajax({
-            url: MenuEditorAdminify.ajax_url,
+            url: MenuFlex.ajax_url,
             type: "post",
             data: {
                 action: "adminify_export_menu_settings",
-                security: MenuEditorAdminify.security,
+                security: MenuFlex.security,
             },
             success: function (response) {
                 var data = response;
@@ -157,11 +157,11 @@
 
             if (parsed != null) {
             $.ajax({
-                url: MenuEditorAdminify.ajax_url,
+                url: MenuFlex.ajax_url,
                 type: "post",
                 data: {
                     action: "adminify_import_menu_settings",
-                    security: MenuEditorAdminify.security,
+                    security: MenuFlex.security,
                     settings: parsed,
                 },
                 success: function (response) {
@@ -276,12 +276,12 @@
         adminify_menu_items_object();
 
         $.ajax({
-            url: MenuEditorAdminify.ajax_url,
+            url: MenuFlex.ajax_url,
             type: "post",
             dataType: "json",
             data: {
                 action: "menu_editor_adminify_save_menu_settings",
-                security: MenuEditorAdminify.security,
+                security: MenuFlex.security,
                 options: menuSettings
             },
             success: function (response) {

@@ -1,6 +1,6 @@
 <?php
 
-namespace MenuEditorAdminify\Inc;
+namespace MenuFlex\Inc;
 
 if (!defined('ABSPATH')) exit;
 

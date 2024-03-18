@@ -1,6 +1,6 @@
 <?php
 
-namespace MenuEditorAdminify\Inc;
+namespace MenuFlex\Inc;
 
 abstract class MenuEditorModel extends Base_Model
 {

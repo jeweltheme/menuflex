@@ -1,6 +1,6 @@
 <?php
 
-namespace MenuEditorAdminify\Inc;
+namespace MenuFlex\Inc;
 
 // no direct access allowed
 if (!defined('ABSPATH'))  exit;
@@ -80,7 +80,7 @@ class MenuEditorAssets extends MenuEditorModel
             'icon_picker_logo' => ADMINIFY_MENU_EDITOR_ASSETS_IMAGE . 'menu-icon.png',
             'security'         => wp_create_nonce('menu-editor-adminify-security-nonce'),
         );
-        wp_localize_script('menuflex', 'MenuEditorAdminify', $localize_menu_data);
+        wp_localize_script('menuflex', 'MenuFlex', $localize_menu_data);
     }
 
     /**Import Menu CSS */

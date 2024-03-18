@@ -1,6 +1,6 @@
 <?php
 
-namespace MenuEditorAdminify\Inc;
+namespace MenuFlex\Inc;
 
 // no direct access allowed
 if (!defined('ABSPATH'))  exit;
@@ -98,7 +98,7 @@ if (!class_exists('MenuEditor')) {
                 $options =  $this->clean_ajax_input($options);
 
                 if ($options == "" || !is_array($options)) {
-                    $message = __("No options supplied to save", ADMINIFY_MENU_EDITOR_TD);
+                    $message = __("No options supplied to save", 'menuflex');
                     echo $this->ajax_error_message($message);
                     die();
                 }
@@ -107,11 +107,11 @@ if (!class_exists('MenuEditor')) {
                     update_option($this->prefix, $options);
                     $returndata = array();
                     $returndata['success'] = true;
-                    $returndata['message'] = __('Settings saved', ADMINIFY_MENU_EDITOR_TD);
+                    $returndata['message'] = __('Settings saved', 'menuflex');
                     echo json_encode($returndata);
                     die();
                 } else {
-                    $message = __("Something went wrong", ADMINIFY_MENU_EDITOR_TD);
+                    $message = __("Something went wrong", 'menuflex');
                     echo $this->ajax_error_message($message);
                     die();
                 }
@@ -135,11 +135,11 @@ if (!class_exists('MenuEditor')) {
                 if (!$menu_editor_options) {
                     $returndata = array();
                     $returndata['success'] = true;
-                    $returndata['message'] = __('Settings reset', ADMINIFY_MENU_EDITOR_TD);
+                    $returndata['message'] = __('Settings reset', 'menuflex');
                     echo json_encode($returndata);
                     die();
                 } else {
-                    $message = __("Something went wrong", ADMINIFY_MENU_EDITOR_TD);
+                    $message = __("Something went wrong", 'menuflex');
                     echo $this->ajax_error_message($message);
                     die();
                 }
@@ -177,7 +177,7 @@ if (!class_exists('MenuEditor')) {
                     update_option($this->prefix, $new_options);
                 }
 
-                echo __("Menu Imported", ADMINIFY_MENU_EDITOR_TD);
+                echo __("Menu Imported", 'menuflex');
             }
             die();
         }
@@ -627,8 +627,8 @@ if (!class_exists('MenuEditor')) {
         public function adminify_menu_editor_page()
         {
             add_menu_page(
-                __('Menu Editor by WP Adminify', ADMINIFY_MENU_EDITOR_TD),
-                __('Menu Editor', ADMINIFY_MENU_EDITOR_TD),
+                __('Menu Editor by WP Adminify', 'menuflex'),
+                __('Menu Editor', 'menuflex'),
                 apply_filters('jltwp_adminify_capability', 'manage_options'),
                 'menuflex',
                 [$this, 'jltwp_adminify_menu_editor_contents'],
@@ -668,7 +668,7 @@ if (!class_exists('MenuEditor')) {
                     jQuery(function($) {
 
                         $('.adminify-menu-settings').tokenize2({
-                            placeholder: '<?php _e('Select roles or users', ADMINIFY_MENU_EDITOR_TD) ?>'
+                            placeholder: '<?php esc_html_e('Select roles or users', 'menuflex') ?>'
                         });
 
                         $('.adminify-menu-settings').on('tokenize:select', function() {
@@ -768,12 +768,12 @@ if (!class_exists('MenuEditor')) {
                         <ul class="m-0 b-0 nav nav-tabs">
                             <li class="nav-item active">
                                 <a class="nav-link is-clickable active" href="#tab-<?php echo esc_attr($menu_id); ?>-1">
-                                    <?php _e('Settings', ADMINIFY_MENU_EDITOR_TD); ?>
+                                    <?php esc_html_e('Settings', 'menuflex'); ?>
                                 </a>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <a class="nav-link is-clickable" href="#tab-<?php echo esc_attr($menu_id); ?>-2">
-                                    <?php _e('Submenu', ADMINIFY_MENU_EDITOR_TD); ?>
+                                    <?php esc_html_e('Submenu', 'menuflex'); ?>
                                 </a>
                             </li>
                         </ul>
@@ -785,13 +785,13 @@ if (!class_exists('MenuEditor')) {
                                 <div class="columns">
                                     <div class="column">
                                         <label for="<?php echo $current_menu_item[2] ?>">
-                                            <?php _e('Rename as', ADMINIFY_MENU_EDITOR_TD); ?>
+                                            <?php esc_html_e('Rename as', 'menuflex'); ?>
                                         </label>
                                         <input class="menu_setting" type="text" name="name" data-top-menu-id="<?php echo esc_attr($menu_id); ?>" placeholder="<?php echo $current_menu_item[0]; ?>" value='<?php echo $name ?>' />
                                     </div>
                                     <div class="column">
                                         <label for="<?php echo $current_menu_item[2] ?>">
-                                            <?php _e('Hidden For Rules', ADMINIFY_MENU_EDITOR_TD); ?>
+                                            <?php esc_html_e('Hidden For Rules', 'menuflex'); ?>
                                         </label>
 
                                         <div class="select is-small">
@@ -803,7 +803,7 @@ if (!class_exists('MenuEditor')) {
                                                     $sel = 'selected';
                                                 }
                                                 ?>
-                                                <option value="Super Admin" <?php echo $sel ?>><?php _e('Super Admin', ADMINIFY_MENU_EDITOR_TD) ?></option>
+                                                <option value="Super Admin" <?php echo $sel ?>><?php esc_html_e('Super Admin', 'menuflex') ?></option>
                                                 <?php
                                                 foreach ($this->roles as $role) {
                                                     $rolename = $role['name'];
@@ -837,13 +837,13 @@ if (!class_exists('MenuEditor')) {
                                 <div class="columns">
                                     <div class="column">
                                         <label for="">
-                                            <?php _e('Change Link', ADMINIFY_MENU_EDITOR_TD); ?>
+                                            <?php esc_html_e('Change Link', 'menuflex'); ?>
                                         </label>
-                                        <input class="menu_setting" name="link" type="url" placeholder="<?php _e('New link', ADMINIFY_MENU_EDITOR_TD); ?>" value="<?php echo esc_url($link); ?>">
+                                        <input class="menu_setting" name="link" type="url" placeholder="<?php esc_html_e('New link', 'menuflex'); ?>" value="<?php echo esc_url($link); ?>">
                                     </div>
                                     <div class="column">
                                         <label for="">
-                                            <?php _e('Set Custom Icon', ADMINIFY_MENU_EDITOR_TD); ?>
+                                            <?php esc_html_e('Set Custom Icon', 'menuflex'); ?>
                                         </label>
                                         <div class="menu-editor-adminify-icon-picker-wrap menu-editor-adminify-menu-icon-picker adminify-icon-picker-input icon-select-button is-clickable is-pulled-left">
                                             <ul class="icon-picker">
@@ -876,7 +876,7 @@ if (!class_exists('MenuEditor')) {
                                 }
                             } else {
                             ?>
-                                <span><?php _e('No sub menu items', ADMINIFY_MENU_EDITOR_TD); ?></span>
+                                <span><?php esc_html_e('No sub menu items', 'menuflex'); ?></span>
                             <?php
                             } ?>
 
@@ -936,7 +936,7 @@ if (!class_exists('MenuEditor')) {
                 <a class="menu-editor-title accordion-button p-4" href="#">
                     <?php
                         $this->accordion_icon();
-                        _e('Separator', ADMINIFY_MENU_EDITOR_TD);
+                        esc_html_e('Separator', 'menuflex');
                     ?>
                 </a>
 
@@ -945,11 +945,11 @@ if (!class_exists('MenuEditor')) {
                         <div class="menu-editor-form">
                             <div class="columns">
                                 <div class="column">
-                                    <label for=""><?php _e('Rename as', ADMINIFY_MENU_EDITOR_TD); ?></label>
-                                    <input class="menu_setting" type="text" name="name" placeholder="<?php _e('New Name', ADMINIFY_MENU_EDITOR_TD); ?>" value="<?php echo $name ?>">
+                                    <label for=""><?php esc_html_e('Rename as', 'menuflex'); ?></label>
+                                    <input class="menu_setting" type="text" name="name" placeholder="<?php esc_html_e('New Name', 'menuflex'); ?>" value="<?php echo $name ?>">
                                 </div>
                                 <div class="column">
-                                    <label for=""><?php _e('Hidden For Rules', ADMINIFY_MENU_EDITOR_TD); ?></label>
+                                    <label for=""><?php esc_html_e('Hidden For Rules', 'menuflex'); ?></label>
 
                                     <div class="select is-small">
                                         <select class="adminify-menu-settings menu_setting" name="hidden_for" id="<?php echo esc_attr($menu_id); ?>-user-role-types" multiple>
@@ -960,7 +960,7 @@ if (!class_exists('MenuEditor')) {
                                                 $sel = 'selected';
                                             }
                                             ?>
-                                            <option value="Super Admin" <?php echo $sel ?>><?php _e('Super Admin', ADMINIFY_MENU_EDITOR_TD) ?></option>
+                                            <option value="Super Admin" <?php echo $sel ?>><?php esc_html_e('Super Admin', 'menuflex') ?></option>
                                             <?php
                                             foreach ($this->roles as $role) {
                                                 $rolename = $role['name'];
@@ -990,7 +990,7 @@ if (!class_exists('MenuEditor')) {
 
                                         <script>
                                             jQuery('#<?php echo esc_attr($menu_id); ?> #<?php echo esc_attr($menu_id); ?>-user-role-types').tokenize2({
-                                                placeholder: '<?php _e('Select roles or users', ADMINIFY_MENU_EDITOR_TD) ?>'
+                                                placeholder: '<?php esc_html_e('Select roles or users', 'menuflex') ?>'
                                             });
                                             jQuery(document).ready(function($) {
                                                 $('#<?php echo esc_attr($menu_id); ?> #<?php echo esc_attr($menu_id); ?>-user-role-types').on('tokenize:select', function(container) {
@@ -1064,11 +1064,11 @@ if (!class_exists('MenuEditor')) {
                         <div class="menu-editor-form">
                             <div class="columns">
                                 <div class="column">
-                                    <label for=""><?php _e('Rename as', ADMINIFY_MENU_EDITOR_TD); ?></label>
-                                    <input class="sub_menu_setting" type="text" data-sub-menu-id="<?php echo esc_attr($menu_id); ?>" name="name" placeholder="<?php _e('New Menu name...', ADMINIFY_MENU_EDITOR_TD) ?>" value="<?php echo $name ?>">
+                                    <label for=""><?php esc_html_e('Rename as', 'menuflex'); ?></label>
+                                    <input class="sub_menu_setting" type="text" data-sub-menu-id="<?php echo esc_attr($menu_id); ?>" name="name" placeholder="<?php esc_html_e('New Menu name...', 'menuflex') ?>" value="<?php echo $name ?>">
                                 </div>
                                 <div class="column">
-                                    <label for=""><?php _e('Hidden For Rules', ADMINIFY_MENU_EDITOR_TD); ?></label>
+                                    <label for=""><?php esc_html_e('Hidden For Rules', 'menuflex'); ?></label>
 
                                     <div class="select is-small">
                                         <select class="adminify-menu-settings sub_menu_setting" name="hidden_for" id="<?php echo esc_attr($menu_id); ?>-user-role-types" multiple>
@@ -1079,7 +1079,7 @@ if (!class_exists('MenuEditor')) {
                                                 $sel = 'selected';
                                             }
                                             ?>
-                                            <option value="Super Admin" <?php echo $sel ?>><?php _e('Super Admin', ADMINIFY_MENU_EDITOR_TD) ?></option>
+                                            <option value="Super Admin" <?php echo $sel ?>><?php esc_html_e('Super Admin', 'menuflex') ?></option>
                                             <?php
                                             foreach ($this->roles as $role) {
                                                 $rolename = $role['name'];
@@ -1109,7 +1109,7 @@ if (!class_exists('MenuEditor')) {
 
                                         <script>
                                             jQuery('#menu-editor-adminify-sub-menu-<?php echo esc_attr($menu_id); ?> #<?php echo esc_attr($menu_id); ?>-user-role-types').tokenize2({
-                                                placeholder: '<?php _e('Select roles or users', ADMINIFY_MENU_EDITOR_TD) ?>'
+                                                placeholder: '<?php esc_html_e('Select roles or users', 'menuflex') ?>'
                                             });
                                             jQuery(document).ready(function($) {
                                                 $('#menu-editor-adminify-sub-menu-<?php echo esc_attr($menu_id); ?> #<?php echo esc_attr($menu_id); ?>-user-role-types').on('tokenize:select', function(container) {
@@ -1123,11 +1123,11 @@ if (!class_exists('MenuEditor')) {
                             </div>
                             <div class="columns">
                                 <div class="column">
-                                    <label for=""><?php _e('Change Link', ADMINIFY_MENU_EDITOR_TD); ?></label>
+                                    <label for=""><?php esc_html_e('Change Link', 'menuflex'); ?></label>
                                     <input class="sub_menu_setting" name="link" type="url" placeholder="New link" value="<?php echo $link ?>">
                                 </div>
                                 <div class="column">
-                                    <label for=""><?php _e('Set Custom Icon', ADMINIFY_MENU_EDITOR_TD); ?></label>
+                                    <label for=""><?php esc_html_e('Set Custom Icon', 'menuflex'); ?></label>
 
                                     <div class="menu-editor-adminify-icon-picker-wrap menu-editor-adminify-menu-icon-picker adminify-icon-picker-input icon-select-button is-clickable is-pulled-left">
                                         <ul class="icon-picker">
@@ -1161,7 +1161,7 @@ if (!class_exists('MenuEditor')) {
         ?>
 
             <div class="adminify-menu-editor-help-urls wp-heading-inline is-pulled-left is-flex is-align-items-center">
-                <?php echo Utils::adminfiy_help_urls(
+                <?php echo Utils::menuflex_help_urls(
                     'Menu Editor',
                     'https://wpadminify.com/kb/wordpress-dashboard-menu-editor/',
                     'https://www.youtube.com/playlist?list=PLqpMw0NsHXV-EKj9Xm1DMGa6FGniHHly8',
@@ -1174,7 +1174,7 @@ if (!class_exists('MenuEditor')) {
             <div class="menu-editor-adminify--page--title--actions mt-1 is-pulled-right">
 
                 <button class="page-title-action mr-3 menu-editor-adminify_menu_save_settings">
-                    <?php _e('Save', ADMINIFY_MENU_EDITOR_TD); ?>
+                    <?php esc_html_e('Save', 'menuflex'); ?>
                 </button>
 
                 <div class="dropdown is-right is-hoverable is-pulled-right">
@@ -1184,18 +1184,18 @@ if (!class_exists('MenuEditor')) {
                                 <path d="M5 12C3.63144 12.0007 2.43589 11.0751 2.09375 9.75H0.5V8.25H2.0945C2.48423 6.74059 3.96509 5.78119 5.50196 6.04243C7.03883 6.30366 8.11953 7.69847 7.98865 9.25188C7.85776 10.8053 6.55892 11.9996 5 12ZM5 7.5C4.18055 7.50083 3.51342 8.15914 3.50167 8.97851C3.48993 9.79788 4.13792 10.475 4.95702 10.4993C5.77611 10.5237 6.46312 9.88613 6.5 9.0675V9.3675V9C6.5 8.17158 5.82843 7.5 5 7.5ZM15.5 9.75H8.75V8.25H15.5V9.75ZM8.75 6C7.38172 6.00035 6.18657 5.07483 5.8445 3.75H0.5V2.25H5.8445C6.23423 0.740588 7.71509 -0.218809 9.25196 0.0424253C10.7888 0.30366 11.8695 1.69847 11.7386 3.25188C11.6078 4.80529 10.3089 5.99961 8.75 6ZM8.75 1.5C7.93055 1.50083 7.26342 2.15914 7.25167 2.97851C7.23993 3.79788 7.88792 4.47503 8.70702 4.49934C9.52611 4.52365 10.2131 3.88613 10.25 3.0675V3.3675V3C10.25 2.17158 9.57843 1.5 8.75 1.5ZM15.5 3.75H12.5V2.25H15.5V3.75Z" fill="#0347FF" />
                             </svg>
                         </button>
-                    </div>
+                    </div
                     <div class="dropdown-menu" id="dropdown-menu" role="menu">
                         <div class="dropdown-content">
                             <a href="#" class="dropdown-item adminify_export_menu_settings">
-                                <?php _e('Export menu', ADMINIFY_MENU_EDITOR_TD); ?>
+                                <?php esc_html_e('Export menu', 'menuflex'); ?>
                             </a>
                             <input accept=".json" type="file" single="" id="adminify_import_menu">
                             <a class="dropdown-item adminify_import_menu_settings">
-                                <?php _e('Import menu', ADMINIFY_MENU_EDITOR_TD); ?>
+                                <?php esc_html_e('Import menu', 'menuflex'); ?>
                             </a>
                             <a href="#" class="dropdown-item menu_editor_adminify_reset_menu_settings">
-                                <?php _e('Reset menu', ADMINIFY_MENU_EDITOR_TD); ?>
+                                <?php esc_html_e('Reset menu', 'menuflex'); ?>
                             </a>
                         </div>
                     </div>
@@ -1204,7 +1204,7 @@ if (!class_exists('MenuEditor')) {
 
             <div class="menu-editor-adminify-desc">
                 <p>
-                    <?php _e('Edit each menu item\'s name, link, icon and visibility. Drag and drop to rearange the menu. Changes will take effect after page refresh.', ADMINIFY_MENU_EDITOR_TD); ?>
+                    <?php esc_html_e('Edit each menu item\'s name, link, icon and visibility. Drag and drop to rearange the menu. Changes will take effect after page refresh.', 'menuflex'); ?>
                 </p>
                 <p>
                     <svg class="is-pulled-left mr-1" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1213,7 +1213,7 @@ if (!class_exists('MenuEditor')) {
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M8.00065 1.33334C4.31865 1.33334 1.33398 4.31801 1.33398 8.00001C1.33398 11.682 4.31865 14.6667 8.00065 14.6667C11.6827 14.6667 14.6673 11.682 14.6673 8.00001C14.6673 4.31801 11.6827 1.33334 8.00065 1.33334ZM2.66732 8.00001C2.66732 9.4145 3.22922 10.7711 4.22942 11.7712C5.22961 12.7714 6.58616 13.3333 8.00065 13.3333C9.41514 13.3333 10.7717 12.7714 11.7719 11.7712C12.7721 10.7711 13.334 9.4145 13.334 8.00001C13.334 6.58552 12.7721 5.22897 11.7719 4.22877C10.7717 3.22858 9.41514 2.66668 8.00065 2.66668C6.58616 2.66668 5.22961 3.22858 4.22942 4.22877C3.22922 5.22897 2.66732 6.58552 2.66732 8.00001V8.00001Z" fill="#4E4B66" />
                     </svg>
 
-                    <?php _e('If you have WP Adminify Menu Module disabled, icons and label dividers won\'t change.', ADMINIFY_MENU_EDITOR_TD); ?>
+                    <?php esc_html_e('If you have WP Adminify Menu Module disabled, icons and label dividers won\'t change.', 'menuflex'); ?>
                 </p>
             </div>
 

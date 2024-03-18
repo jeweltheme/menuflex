@@ -1,6 +1,6 @@
 <?php
 
-namespace MenuEditorAdminify\Inc;
+namespace MenuFlex\Inc;
 
 // no direct access allowed
 if (!defined('ABSPATH'))  exit;
@@ -39,7 +39,7 @@ class Utils
     }
 
 
-    public static function adminfiy_help_urls($module_name = '', $docs = '', $youtube = '', $facebook_grp = '', $support = '')
+    public static function menuflex_help_urls($module_name = '', $docs = '', $youtube = '', $facebook_grp = '', $support = '')
     {
         $help_content = '';
 
@@ -81,7 +81,7 @@ class Utils
 
         $help_content = sprintf(
             __('%1$s <a class="adminify-docs-url" href="%2$s" target="_blank"> ' . Utils::docs_icon() . ' Docs</a>
-                <a  class="adminify-video-url" href="%3$s" target="_blank">' . Utils::video_tutorials_icon() . ' Video Tutorial</a> <a  class="adminify-fbgroup-url" href="%4$s" target="_blank">' . Utils::fbgroup_icon() . ' Facebook Group</a> <a  class="adminify-support-url" href="%5$s" target="_blank">' . Utils::support_icon() . ' Support</a>', ADMINIFY_MENU_EDITOR_TD),
+                <a  class="adminify-video-url" href="%3$s" target="_blank">' . Utils::video_tutorials_icon() . ' Video Tutorial</a> <a  class="adminify-fbgroup-url" href="%4$s" target="_blank">' . Utils::fbgroup_icon() . ' Facebook Group</a> <a  class="adminify-support-url" href="%5$s" target="_blank">' . Utils::support_icon() . ' Support</a>', 'menuflex'),
             $module_name,
             $docs,
             $youtube,

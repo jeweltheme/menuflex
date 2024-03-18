@@ -7,19 +7,19 @@ namespace Composer\Autoload;
 class ComposerStaticInit4e34e47cc92464c2c82778535f37b115
 {
     public static $prefixLengthsPsr4 = array (
-        'M' => 
+        'M' =>
         array (
-            'MenuEditorAdminify\\Inc\\' => 23,
-            'MenuEditorAdminify\\' => 19,
+            'MenuFlex\\Inc\\' => 23,
+            'MenuFlex\\' => 19,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'MenuEditorAdminify\\Inc\\' => 
+        'MenuFlex\\Inc\\' =>
         array (
             0 => __DIR__ . '/../..' . '/Inc',
         ),
-        'MenuEditorAdminify\\' => 
+        'MenuFlex\\' =>
         array (
             0 => __DIR__ . '/../..' . '/menu-editor-adminify',
         ),

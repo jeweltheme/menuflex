@@ -6,6 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'MenuEditorAdminify\\Inc\\' => array($baseDir . '/Inc'),
-    'MenuEditorAdminify\\' => array($baseDir . '/menu-editor-adminify'),
+    'MenuFlex\\Inc\\' => array($baseDir . '/Inc'),
+    'MenuFlex\\' => array($baseDir . '/menu-editor-adminify'),
 );
