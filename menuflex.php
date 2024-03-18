@@ -27,19 +27,19 @@ $adminify_menu_editor_plugin_data     = get_file_data(__FILE__,  array(
 
 
 // Define Constants
-if (!defined('ADMINIFY_MENU_EDITOR')) define('ADMINIFY_MENU_EDITOR', $adminify_menu_editor_plugin_data['Plugin Name']);
-if (!defined('ADMINIFY_MENU_EDITOR_VER')) define('ADMINIFY_MENU_EDITOR_VER', $adminify_menu_editor_plugin_data['Version']);
-if (!defined('ADMINIFY_MENU_EDITOR_FILE')) define('ADMINIFY_MENU_EDITOR_FILE', __FILE__);
-if (!defined('ADMINIFY_MENU_EDITOR_BASE')) define('ADMINIFY_MENU_EDITOR_BASE', plugin_basename(__FILE__));
-if (!defined('ADMINIFY_MENU_EDITOR_PATH')) define('ADMINIFY_MENU_EDITOR_PATH', trailingslashit(plugin_dir_path(__FILE__)));
-if (!defined('ADMINIFY_MENU_EDITOR_URL')) define('ADMINIFY_MENU_EDITOR_URL', trailingslashit(plugins_url('/', __FILE__)));
-if (!defined('ADMINIFY_MENU_EDITOR_ASSETS')) define('ADMINIFY_MENU_EDITOR_ASSETS', ADMINIFY_MENU_EDITOR_URL . 'assets/');
-if (!defined('ADMINIFY_MENU_EDITOR_ASSETS_IMAGE')) define('ADMINIFY_MENU_EDITOR_ASSETS_IMAGE', ADMINIFY_MENU_EDITOR_ASSETS . 'images/');
-if (!defined('ADMINIFY_MENU_EDITOR_ASSET_PATH')) define('ADMINIFY_MENU_EDITOR_ASSET_PATH', wp_upload_dir()['basedir'] . '/menu-editor-adminify');
-if (!defined('ADMINIFY_MENU_EDITOR_ASSET_URL')) define('ADMINIFY_MENU_EDITOR_ASSET_URL', wp_upload_dir()['baseurl'] . '/menu-editor-adminify');
-if (!defined('ADMINIFY_MENU_EDITOR_DESC')) define('ADMINIFY_MENU_EDITOR_DESC', $adminify_menu_editor_plugin_data['Description']);
-if (!defined('ADMINIFY_MENU_EDITOR_AUTHOR')) define('ADMINIFY_MENU_EDITOR_AUTHOR', $adminify_menu_editor_plugin_data['Author']);
-if (!defined('ADMINIFY_MENU_EDITOR_URI')) define('ADMINIFY_MENU_EDITOR_URI', $adminify_menu_editor_plugin_data['Plugin URI']);
+if (!defined('MENUFLEX')) define('MENUFLEX', $adminify_menu_editor_plugin_data['Plugin Name']);
+if (!defined('MENUFLEX_VER')) define('MENUFLEX_VER', $adminify_menu_editor_plugin_data['Version']);
+if (!defined('MENUFLEX_FILE')) define('MENUFLEX_FILE', __FILE__);
+if (!defined('MENUFLEX_BASE')) define('MENUFLEX_BASE', plugin_basename(__FILE__));
+if (!defined('MENUFLEX_PATH')) define('MENUFLEX_PATH', trailingslashit(plugin_dir_path(__FILE__)));
+if (!defined('MENUFLEX_URL')) define('MENUFLEX_URL', trailingslashit(plugins_url('/', __FILE__)));
+if (!defined('MENUFLEX_ASSETS')) define('MENUFLEX_ASSETS', MENUFLEX_URL . 'assets/');
+if (!defined('MENUFLEX_ASSETS_IMAGE')) define('MENUFLEX_ASSETS_IMAGE', MENUFLEX_ASSETS . 'images/');
+if (!defined('MENUFLEX_ASSET_PATH')) define('MENUFLEX_ASSET_PATH', wp_upload_dir()['basedir'] . '/menu-editor-adminify');
+if (!defined('MENUFLEX_ASSET_URL')) define('MENUFLEX_ASSET_URL', wp_upload_dir()['baseurl'] . '/menu-editor-adminify');
+if (!defined('MENUFLEX_DESC')) define('MENUFLEX_DESC', $adminify_menu_editor_plugin_data['Description']);
+if (!defined('MENUFLEX_AUTHOR')) define('MENUFLEX_AUTHOR', $adminify_menu_editor_plugin_data['Author']);
+if (!defined('MENUFLEX_URI')) define('MENUFLEX_URI', $adminify_menu_editor_plugin_data['Plugin URI']);
 
 
 
@@ -51,6 +51,6 @@ if (!class_exists('\\MenuFlex\\MenuFlex')) {
     require_once dirname(__FILE__) . '/class-menuflex.php';
 
     // Activation and Deactivation hooks
-    register_activation_hook(ADMINIFY_MENU_EDITOR_FILE, array('\\MenuFlex\\MenuFlex', 'menu_editor_adminify_activation_hook'));
-    register_deactivation_hook(ADMINIFY_MENU_EDITOR_FILE, array('\\MenuFlex\\MenuFlex', 'menu_editor_adminify_deactivation_hook'));
+    register_activation_hook(MENUFLEX_FILE, array('\\MenuFlex\\MenuFlex', 'menu_editor_adminify_activation_hook'));
+    register_deactivation_hook(MENUFLEX_FILE, array('\\MenuFlex\\MenuFlex', 'menu_editor_adminify_deactivation_hook'));
 }

@@ -24,7 +24,7 @@ if (!class_exists('MenuEditor')) {
 
         public function __construct()
         {
-            $this->url = ADMINIFY_MENU_EDITOR_URL;
+            $this->url = MENUFLEX_URL;
             $this->menu_settings = (new MenuEditorOptions())->get();
 
             add_action('admin_menu', [$this, 'adminify_menu_editor_page']);
@@ -94,7 +94,7 @@ if (!class_exists('MenuEditor')) {
 
             if (defined('DOING_AJAX') && DOING_AJAX && check_ajax_referer('menu-editor-adminify-security-nonce', 'security') > 0) {
 
-                $options = $_POST['options'];
+                $options = wp_kses_post_deep(wp_unslash($_POST['options']));
                 $options =  $this->clean_ajax_input($options);
 
                 if ($options == "" || !is_array($options)) {
@@ -171,7 +171,8 @@ if (!class_exists('MenuEditor')) {
         {
             if (defined('DOING_AJAX') && DOING_AJAX && check_ajax_referer('menu-editor-adminify-security-nonce', 'security') > 0) {
 
-                $new_options = $this->clean_ajax_input($_POST['settings']);
+                $settings = wp_kses_post_deep(wp_unslash($_POST['settings']));
+                $new_options = $this->clean_ajax_input($settings);
 
                 if (is_array($new_options)) {
                     update_option($this->prefix, $new_options);
@@ -632,7 +633,7 @@ if (!class_exists('MenuEditor')) {
                 apply_filters('jltwp_adminify_capability', 'manage_options'),
                 'menuflex',
                 [$this, 'jltwp_adminify_menu_editor_contents'],
-                ADMINIFY_MENU_EDITOR_ASSETS_IMAGE . 'menu-icon.png',
+                MENUFLEX_ASSETS_IMAGE . 'menu-icon.png',
                 30
             );
         }
@@ -668,7 +669,7 @@ if (!class_exists('MenuEditor')) {
                     jQuery(function($) {
 
                         $('.adminify-menu-settings').tokenize2({
-                            placeholder: '<?php esc_html_e('Select roles or users', 'menuflex') ?>'
+                            placeholder: '<?php echo esc_html_e('Select roles or users', 'menuflex') ?>'
                         });
 
                         $('.adminify-menu-settings').on('tokenize:select', function() {
@@ -748,7 +749,7 @@ if (!class_exists('MenuEditor')) {
                 'dashicons-admin-tools'      => 'dashicons dashicons-admin-tools',
                 'dashicons-chart-bar'        => 'dashicons dashicons-chart-bar',
                 'dashicons-admin-settings'   => 'dashicons dashicons-admin-settings',
-                ADMINIFY_MENU_EDITOR_ASSETS_IMAGE . 'menu-icon.png'            => ADMINIFY_MENU_EDITOR_ASSETS_IMAGE . 'menu-icon.png'
+                MENUFLEX_ASSETS_IMAGE . 'menu-icon.png'            => MENUFLEX_ASSETS_IMAGE . 'menu-icon.png'
             );
 
             $default_icons = (isset($current_menu_item)) ? $current_menu_item[6] : 'dashicons dashicons-external';
@@ -850,7 +851,7 @@ if (!class_exists('MenuEditor')) {
                                                 <li class="icon-none" title="None"><i class="dashicons dashicons-dismiss"></i></li>
                                                 <li class="select-icon" title="Icon Library">
                                                     <?php
-                                                    $adminify_icon = ADMINIFY_MENU_EDITOR_ASSETS_IMAGE . 'menu-icon.png';
+                                                    $adminify_icon = MENUFLEX_ASSETS_IMAGE . 'menu-icon.png';
                                                     if (empty($icons[$default_icons])) {
                                                         echo '<i class=""><img src=' . $adminify_icon . ' ></i>';
                                                     } else { ?>
@@ -1188,14 +1189,14 @@ if (!class_exists('MenuEditor')) {
                     <div class="dropdown-menu" id="dropdown-menu" role="menu">
                         <div class="dropdown-content">
                             <a href="#" class="dropdown-item adminify_export_menu_settings">
-                                <?php esc_html_e('Export menu', 'menuflex'); ?>
+                                <?php echo esc_html_e('Export menu', 'menuflex'); ?>
                             </a>
                             <input accept=".json" type="file" single="" id="adminify_import_menu">
                             <a class="dropdown-item adminify_import_menu_settings">
-                                <?php esc_html_e('Import menu', 'menuflex'); ?>
+                                <?php echo esc_html_e('Import menu', 'menuflex'); ?>
                             </a>
                             <a href="#" class="dropdown-item menu_editor_adminify_reset_menu_settings">
-                                <?php esc_html_e('Reset menu', 'menuflex'); ?>
+                                <?php echo esc_html_e('Reset menu', 'menuflex'); ?>
                             </a>
                         </div>
                     </div>
@@ -1204,7 +1205,7 @@ if (!class_exists('MenuEditor')) {
 
             <div class="menu-editor-adminify-desc">
                 <p>
-                    <?php esc_html_e('Edit each menu item\'s name, link, icon and visibility. Drag and drop to rearange the menu. Changes will take effect after page refresh.', 'menuflex'); ?>
+                    <?php echo esc_html_e('Edit each menu item\'s name, link, icon and visibility. Drag and drop to rearange the menu. Changes will take effect after page refresh.', 'menuflex'); ?>
                 </p>
                 <p>
                     <svg class="is-pulled-left mr-1" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">

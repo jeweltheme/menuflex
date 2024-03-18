@@ -22,20 +22,20 @@ class MenuEditorAssets extends MenuEditorModel
     public function menu_editor_enqueue_scripts()
     {
         // Register Styles
-        wp_register_style('menuflex', ADMINIFY_MENU_EDITOR_ASSETS . 'css/menu-editor-adminify.css', false, ADMINIFY_MENU_EDITOR_VER);
-        wp_register_style('menu-editor-adminify-tokenize2', ADMINIFY_MENU_EDITOR_ASSETS . 'vendors/tokenize/tokenize2.min.css', false, ADMINIFY_MENU_EDITOR_VER);
-        wp_register_style('menu-editor-adminify-icon-picker', ADMINIFY_MENU_EDITOR_ASSETS . 'vendors/adminify-icon-picker/css/style.css', false, ADMINIFY_MENU_EDITOR_VER);
-        wp_register_style('menu-editor-adminify-custom-menu', ADMINIFY_MENU_EDITOR_ASSETS . 'css/menu-editor-adminify-custom-menu.css', false, ADMINIFY_MENU_EDITOR_VER);
+        wp_register_style('menuflex', MENUFLEX_ASSETS . 'css/menu-editor-adminify.css', false, MENUFLEX_VER);
+        wp_register_style('menu-editor-adminify-tokenize2', MENUFLEX_ASSETS . 'vendors/tokenize/tokenize2.min.css', false, MENUFLEX_VER);
+        wp_register_style('menu-editor-adminify-icon-picker', MENUFLEX_ASSETS . 'vendors/adminify-icon-picker/css/style.css', false, MENUFLEX_VER);
+        wp_register_style('menu-editor-adminify-custom-menu', MENUFLEX_ASSETS . 'css/menu-editor-adminify-custom-menu.css', false, MENUFLEX_VER);
 
         // Font Icons
-        wp_register_style('menu-editor-adminify-simple-line-icons', ADMINIFY_MENU_EDITOR_ASSETS . 'fonts/simple-line-icons/css/simple-line-icons.css', false, ADMINIFY_MENU_EDITOR_VER);
-        wp_register_style('menu-editor-adminify-icomoon', ADMINIFY_MENU_EDITOR_ASSETS . 'fonts/icomoon/style.css', false, ADMINIFY_MENU_EDITOR_VER);
-        wp_register_style('menu-editor-adminify-themify-icons', ADMINIFY_MENU_EDITOR_ASSETS . 'fonts/themify-icons/themify-icons.css', false, ADMINIFY_MENU_EDITOR_VER);
+        wp_register_style('menu-editor-adminify-simple-line-icons', MENUFLEX_ASSETS . 'fonts/simple-line-icons/css/simple-line-icons.css', false, MENUFLEX_VER);
+        wp_register_style('menu-editor-adminify-icomoon', MENUFLEX_ASSETS . 'fonts/icomoon/style.css', false, MENUFLEX_VER);
+        wp_register_style('menu-editor-adminify-themify-icons', MENUFLEX_ASSETS . 'fonts/themify-icons/themify-icons.css', false, MENUFLEX_VER);
 
         // Register Scripts
-        wp_register_script('menu-editor-adminify-icon-picker', ADMINIFY_MENU_EDITOR_ASSETS . 'vendors/adminify-icon-picker/js/adminify-icon-picker.js',  ['jquery'], ADMINIFY_MENU_EDITOR_VER, true);
-        wp_register_script('menu-editor-adminify-tokenize2', ADMINIFY_MENU_EDITOR_ASSETS . 'vendors/tokenize/tokenize2.min.js', ['jquery'], ADMINIFY_MENU_EDITOR_VER, false);
-        wp_register_script('menuflex', ADMINIFY_MENU_EDITOR_ASSETS . 'js/menu-editor-adminify.js',  ['jquery', 'jquery-ui-sortable', 'menu-editor-adminify-icon-picker'], ADMINIFY_MENU_EDITOR_VER, true);
+        wp_register_script('menu-editor-adminify-icon-picker', MENUFLEX_ASSETS . 'vendors/adminify-icon-picker/js/adminify-icon-picker.js',  ['jquery'], MENUFLEX_VER, true);
+        wp_register_script('menu-editor-adminify-tokenize2', MENUFLEX_ASSETS . 'vendors/tokenize/tokenize2.min.js', ['jquery'], MENUFLEX_VER, false);
+        wp_register_script('menuflex', MENUFLEX_ASSETS . 'js/menu-editor-adminify.js',  ['jquery', 'jquery-ui-sortable', 'menu-editor-adminify-icon-picker'], MENUFLEX_VER, true);
 
 
         global $pagenow;
@@ -77,7 +77,7 @@ class MenuEditorAssets extends MenuEditorModel
             'ajax_url'         => admin_url('admin-ajax.php'),
             'assets_manager'   => !empty($this->options['adminify_assets']) ? $this->options['adminify_assets'] : '',
             'plugins_icons'    => $plugins_icons,
-            'icon_picker_logo' => ADMINIFY_MENU_EDITOR_ASSETS_IMAGE . 'menu-icon.png',
+            'icon_picker_logo' => MENUFLEX_ASSETS_IMAGE . 'menu-icon.png',
             'security'         => wp_create_nonce('menu-editor-adminify-security-nonce'),
         );
         wp_localize_script('menuflex', 'MenuFlex', $localize_menu_data);

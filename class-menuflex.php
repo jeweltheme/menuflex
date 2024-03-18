@@ -12,7 +12,7 @@ if (!class_exists('MenuFlex')) {
     class MenuFlex
     {
 
-        const VERSION = ADMINIFY_MENU_EDITOR_VER;
+        const VERSION = MENUFLEX_VER;
         private static $instance = null;
 
 
@@ -46,7 +46,7 @@ if (!class_exists('MenuFlex')) {
         // Plugin Row Meta Links
         public function adminify_menu_editor_plugin_row_meta($plugin_meta, $plugin_file)
         {
-            if (ADMINIFY_MENU_EDITOR_BASE === $plugin_file) {
+            if (MENUFLEX_BASE === $plugin_file) {
                 $row_meta = [
                     'docs' => sprintf(
                         '<a href="%1$s" target="_blank">%2$s</a>',
@@ -80,7 +80,7 @@ if (!class_exists('MenuFlex')) {
             $locale = apply_filters('plugin_locale', get_locale(), $domain);
 
             load_textdomain($domain, WP_LANG_DIR . '/' . $domain . '/' . $domain . '-' . $locale . '.mo');
-            load_plugin_textdomain($domain, false, dirname(ADMINIFY_MENU_EDITOR_BASE) . '/languages/');
+            load_plugin_textdomain($domain, false, dirname(MENUFLEX_BASE) . '/languages/');
         }
 
 
