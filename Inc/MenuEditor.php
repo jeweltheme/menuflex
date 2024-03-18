@@ -84,7 +84,7 @@ if (!class_exists('MenuEditor')) {
             $returndata = array();
             $returndata['error'] = true;
             $returndata['error_message'] = $message;
-            return json_encode($returndata);
+            return wp_json_encode($returndata);
         }
 
 
@@ -108,7 +108,7 @@ if (!class_exists('MenuEditor')) {
                     $returndata = array();
                     $returndata['success'] = true;
                     $returndata['message'] = __('Settings saved', 'menuflex');
-                    echo json_encode($returndata);
+                    echo wp_json_encode($returndata);
                     die();
                 } else {
                     $message = __("Something went wrong", 'menuflex');
@@ -136,7 +136,7 @@ if (!class_exists('MenuEditor')) {
                     $returndata = array();
                     $returndata['success'] = true;
                     $returndata['message'] = __('Settings reset', 'menuflex');
-                    echo json_encode($returndata);
+                    echo wp_json_encode($returndata);
                     die();
                 } else {
                     $message = __("Something went wrong", 'menuflex');
@@ -156,7 +156,7 @@ if (!class_exists('MenuEditor')) {
         {
             if (defined('DOING_AJAX') && DOING_AJAX && check_ajax_referer('menu-editor-adminify-security-nonce', 'security') > 0) {
                 $menu_editor_options = get_option($this->prefix);
-                echo json_encode($menu_editor_options);
+                echo wp_json_encode($menu_editor_options);
             }
             die();
         }
@@ -178,7 +178,7 @@ if (!class_exists('MenuEditor')) {
                     update_option($this->prefix, $new_options);
                 }
 
-                echo __("Menu Imported", 'menuflex');
+                echo esc_html__("Menu Imported", 'menuflex');
             }
             die();
         }
@@ -628,8 +628,8 @@ if (!class_exists('MenuEditor')) {
         public function adminify_menu_editor_page()
         {
             add_menu_page(
-                __('Menu Editor by WP Adminify', 'menuflex'),
-                __('Menu Editor', 'menuflex'),
+                esc_html__('Menu Editor by WP Adminify', 'menuflex'),
+                esc_html__('Menu Editor', 'menuflex'),
                 apply_filters('jltwp_adminify_capability', 'manage_options'),
                 'menuflex',
                 [$this, 'jltwp_adminify_menu_editor_contents'],
@@ -669,7 +669,7 @@ if (!class_exists('MenuEditor')) {
                     jQuery(function($) {
 
                         $('.adminify-menu-settings').tokenize2({
-                            placeholder: '<?php echo esc_html_e('Select roles or users', 'menuflex') ?>'
+                            placeholder: '<?php echo esc_html__('Select roles or users', 'menuflex') ?>'
                         });
 
                         $('.adminify-menu-settings').on('tokenize:select', function() {
@@ -755,7 +755,7 @@ if (!class_exists('MenuEditor')) {
             $default_icons = (isset($current_menu_item)) ? $current_menu_item[6] : 'dashicons dashicons-external';
 
             ?>
-            <div class="accordion adminify_menu_item" name="<?php echo $current_menu_item[2] ?>" id="menu-editor-adminify-top-menu-<?php echo esc_attr($menu_id); ?>">
+            <div class="accordion adminify_menu_item" name="<?php echo esc_attr($current_menu_item[2]); ?>" id="menu-editor-adminify-top-menu-<?php echo esc_attr($menu_id); ?>">
                 <input type="number" class="top_level_order" value="" style="display:none;">
                 <a class="menu-editor-title accordion-button p-4" href="#">
                     <?php
@@ -769,12 +769,12 @@ if (!class_exists('MenuEditor')) {
                         <ul class="m-0 b-0 nav nav-tabs">
                             <li class="nav-item active">
                                 <a class="nav-link is-clickable active" href="#tab-<?php echo esc_attr($menu_id); ?>-1">
-                                    <?php esc_html_e('Settings', 'menuflex'); ?>
+                                    <?php echo esc_html__('Settings', 'menuflex'); ?>
                                 </a>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <a class="nav-link is-clickable" href="#tab-<?php echo esc_attr($menu_id); ?>-2">
-                                    <?php esc_html_e('Submenu', 'menuflex'); ?>
+                                    <?php echo esc_html__('Submenu', 'menuflex'); ?>
                                 </a>
                             </li>
                         </ul>
@@ -785,14 +785,14 @@ if (!class_exists('MenuEditor')) {
                             <div class="menu-editor-form">
                                 <div class="columns">
                                     <div class="column">
-                                        <label for="<?php echo $current_menu_item[2] ?>">
-                                            <?php esc_html_e('Rename as', 'menuflex'); ?>
+                                        <label for="<?php echo esc_attr($current_menu_item[2]); ?>">
+                                            <?php echo esc_html__('Rename as', 'menuflex'); ?>
                                         </label>
-                                        <input class="menu_setting" type="text" name="name" data-top-menu-id="<?php echo esc_attr($menu_id); ?>" placeholder="<?php echo $current_menu_item[0]; ?>" value='<?php echo $name ?>' />
+                                        <input class="menu_setting" type="text" name="name" data-top-menu-id="<?php echo esc_attr($menu_id); ?>" placeholder="<?php echo esc_attr($current_menu_item[0]); ?>" value='<?php echo esc_attr($name); ?>' />
                                     </div>
                                     <div class="column">
-                                        <label for="<?php echo $current_menu_item[2] ?>">
-                                            <?php esc_html_e('Hidden For Rules', 'menuflex'); ?>
+                                        <label for="<?php echo esc_attr($current_menu_item[2]); ?>">
+                                            <?php echo esc_html__('Hidden For Rules', 'menuflex'); ?>
                                         </label>
 
                                         <div class="select is-small">
@@ -804,7 +804,7 @@ if (!class_exists('MenuEditor')) {
                                                     $sel = 'selected';
                                                 }
                                                 ?>
-                                                <option value="Super Admin" <?php echo $sel ?>><?php esc_html_e('Super Admin', 'menuflex') ?></option>
+                                                <option value="Super Admin" <?php echo esc_attr($sel); ?>><?php echo esc_html__('Super Admin', 'menuflex') ?></option>
                                                 <?php
                                                 foreach ($this->roles as $role) {
                                                     $rolename = $role['name'];
@@ -814,7 +814,7 @@ if (!class_exists('MenuEditor')) {
                                                         $sel = 'selected';
                                                     }
                                                 ?>
-                                                    <option value="<?php echo $rolename ?>" <?php echo $sel ?>><?php echo $rolename ?></option>
+                                                    <option value="<?php echo esc_attr($rolename); ?>" <?php echo esc_attr($sel); ?>><?php echo esc_html($rolename); ?></option>
                                                 <?php
                                                 }
 
@@ -826,7 +826,7 @@ if (!class_exists('MenuEditor')) {
                                                         $sel = 'selected';
                                                     }
                                                 ?>
-                                                    <option value="<?php echo $username ?>" <?php echo $sel ?>><?php echo $username ?></option>
+                                                    <option value="<?php echo esc_attr($username); ?>" <?php echo esc_attr($sel); ?>><?php echo esc_html($username); ?></option>
                                                 <?php
                                                 }
                                                 ?>
@@ -838,13 +838,13 @@ if (!class_exists('MenuEditor')) {
                                 <div class="columns">
                                     <div class="column">
                                         <label for="">
-                                            <?php esc_html_e('Change Link', 'menuflex'); ?>
+                                            <?php echo esc_html__('Change Link', 'menuflex'); ?>
                                         </label>
-                                        <input class="menu_setting" name="link" type="url" placeholder="<?php esc_html_e('New link', 'menuflex'); ?>" value="<?php echo esc_url($link); ?>">
+                                        <input class="menu_setting" name="link" type="url" placeholder="<?php echo esc_html__('New link', 'menuflex'); ?>" value="<?php echo esc_url($link); ?>">
                                     </div>
                                     <div class="column">
                                         <label for="">
-                                            <?php esc_html_e('Set Custom Icon', 'menuflex'); ?>
+                                            <?php echo esc_html__('Set Custom Icon', 'menuflex'); ?>
                                         </label>
                                         <div class="menu-editor-adminify-icon-picker-wrap menu-editor-adminify-menu-icon-picker adminify-icon-picker-input icon-select-button is-clickable is-pulled-left">
                                             <ul class="icon-picker">
@@ -855,7 +855,7 @@ if (!class_exists('MenuEditor')) {
                                                     if (empty($icons[$default_icons])) {
                                                         echo '<i class=""><img src=' . $adminify_icon . ' ></i>';
                                                     } else { ?>
-                                                        <i class="<?php echo $this->get_icon(esc_attr($icon), $icons[$default_icons]); ?>"></i>
+                                                        <i class="<?php echo esc_attr($this->get_icon($icon, $icons[$default_icons]) ); ?>"></i>
                                                     <?php } ?>
 
                                                 </li>
@@ -877,7 +877,7 @@ if (!class_exists('MenuEditor')) {
                                 }
                             } else {
                             ?>
-                                <span><?php esc_html_e('No sub menu items', 'menuflex'); ?></span>
+                                <span><?php echo esc_html__('No sub menu items', 'menuflex'); ?></span>
                             <?php
                             } ?>
 
@@ -932,12 +932,12 @@ if (!class_exists('MenuEditor')) {
                 $disabled_for = array();
             }
         ?>
-            <div class="accordion adminify_menu_item" name="<?php echo $current_menu_item[2] ?>" id="<?php echo esc_attr($menu_id); ?>">
+            <div class="accordion adminify_menu_item" name="<?php echo esc_attr($current_menu_item[2]); ?>" id="<?php echo esc_attr($menu_id); ?>">
                 <input type="number" class="top_level_order" value="" style="display:none;">
                 <a class="menu-editor-title accordion-button p-4" href="#">
                     <?php
                         $this->accordion_icon();
-                        esc_html_e('Separator', 'menuflex');
+                    echo esc_html__('Separator', 'menuflex');
                     ?>
                 </a>
 
@@ -946,11 +946,11 @@ if (!class_exists('MenuEditor')) {
                         <div class="menu-editor-form">
                             <div class="columns">
                                 <div class="column">
-                                    <label for=""><?php esc_html_e('Rename as', 'menuflex'); ?></label>
-                                    <input class="menu_setting" type="text" name="name" placeholder="<?php esc_html_e('New Name', 'menuflex'); ?>" value="<?php echo $name ?>">
+                                    <label for=""><?php echo esc_html__('Rename as', 'menuflex'); ?></label>
+                                    <input class="menu_setting" type="text" name="name" placeholder="<?php echo esc_html__('New Name', 'menuflex'); ?>" value="<?php echo esc_attr($name); ?>">
                                 </div>
                                 <div class="column">
-                                    <label for=""><?php esc_html_e('Hidden For Rules', 'menuflex'); ?></label>
+                                    <label for=""><?php echo esc_html__('Hidden For Rules', 'menuflex'); ?></label>
 
                                     <div class="select is-small">
                                         <select class="adminify-menu-settings menu_setting" name="hidden_for" id="<?php echo esc_attr($menu_id); ?>-user-role-types" multiple>
@@ -961,7 +961,9 @@ if (!class_exists('MenuEditor')) {
                                                 $sel = 'selected';
                                             }
                                             ?>
-                                            <option value="Super Admin" <?php echo $sel ?>><?php esc_html_e('Super Admin', 'menuflex') ?></option>
+                                                <option value="Super Admin" <?php echo esc_attr($sel); ?>>
+                                                    <?php echo esc_html__('Super Admin', 'menuflex') ?>
+                                                </option>
                                             <?php
                                             foreach ($this->roles as $role) {
                                                 $rolename = $role['name'];
@@ -971,7 +973,7 @@ if (!class_exists('MenuEditor')) {
                                                     $sel = 'selected';
                                                 }
                                             ?>
-                                                <option value="<?php echo $rolename ?>" <?php echo $sel ?>><?php echo $rolename ?></option>
+                                                <option value="<?php echo esc_attr($rolename); ?>" <?php echo esc_attr($sel); ?>><?php echo esc_html($rolename); ?></option>
                                             <?php
                                             }
 
@@ -983,7 +985,7 @@ if (!class_exists('MenuEditor')) {
                                                     $sel = 'selected';
                                                 }
                                             ?>
-                                                <option value="<?php echo $username ?>" <?php echo $sel ?>><?php echo $username ?></option>
+                                                <option value="<?php echo esc_attr($username) ?>" <?php echo esc_attr($sel); ?>><?php echo esc_html($username); ?></option>
                                             <?php
                                             }
                                             ?>
@@ -991,7 +993,7 @@ if (!class_exists('MenuEditor')) {
 
                                         <script>
                                             jQuery('#<?php echo esc_attr($menu_id); ?> #<?php echo esc_attr($menu_id); ?>-user-role-types').tokenize2({
-                                                placeholder: '<?php esc_html_e('Select roles or users', 'menuflex') ?>'
+                                                placeholder: '<?php echo esc_html__('Select roles or users', 'menuflex') ?>'
                                             });
                                             jQuery(document).ready(function($) {
                                                 $('#<?php echo esc_attr($menu_id); ?> #<?php echo esc_attr($menu_id); ?>-user-role-types').on('tokenize:select', function(container) {
@@ -1051,7 +1053,7 @@ if (!class_exists('MenuEditor')) {
             $menu_id = preg_replace("/[^A-Za-z0-9 ]/", '', $current_menu_item[2]);
 
         ?>
-            <div class="accordion adminify_sub_menu_item" name="<?php echo $current_menu_item[2] ?>" id="menu-editor-adminify-sub-menu-<?php echo esc_attr($menu_id); ?>">
+            <div class="accordion adminify_sub_menu_item" name="<?php echo esc_attr($current_menu_item[2]); ?>" id="menu-editor-adminify-sub-menu-<?php echo esc_attr($menu_id); ?>">
                 <input type="number" class="top_level_order" value="" style="display:none;">
                 <a class="menu-editor-title accordion-button p-4" href="#">
                     <?php
@@ -1065,11 +1067,11 @@ if (!class_exists('MenuEditor')) {
                         <div class="menu-editor-form">
                             <div class="columns">
                                 <div class="column">
-                                    <label for=""><?php esc_html_e('Rename as', 'menuflex'); ?></label>
-                                    <input class="sub_menu_setting" type="text" data-sub-menu-id="<?php echo esc_attr($menu_id); ?>" name="name" placeholder="<?php esc_html_e('New Menu name...', 'menuflex') ?>" value="<?php echo $name ?>">
+                                    <label for=""><?php echo esc_html__('Rename as', 'menuflex'); ?></label>
+                                    <input class="sub_menu_setting" type="text" data-sub-menu-id="<?php echo esc_attr($menu_id); ?>" name="name" placeholder="<?php echo esc_html__('New Menu name...', 'menuflex') ?>" value="<?php echo esc_attr($name); ?>">
                                 </div>
                                 <div class="column">
-                                    <label for=""><?php esc_html_e('Hidden For Rules', 'menuflex'); ?></label>
+                                    <label for=""><?php echo esc_html__('Hidden For Rules', 'menuflex'); ?></label>
 
                                     <div class="select is-small">
                                         <select class="adminify-menu-settings sub_menu_setting" name="hidden_for" id="<?php echo esc_attr($menu_id); ?>-user-role-types" multiple>
@@ -1080,7 +1082,7 @@ if (!class_exists('MenuEditor')) {
                                                 $sel = 'selected';
                                             }
                                             ?>
-                                            <option value="Super Admin" <?php echo $sel ?>><?php esc_html_e('Super Admin', 'menuflex') ?></option>
+                                            <option value="Super Admin" <?php echo esc_attr($sel); ?>><?php echo esc_html__('Super Admin', 'menuflex') ?></option>
                                             <?php
                                             foreach ($this->roles as $role) {
                                                 $rolename = $role['name'];
@@ -1090,7 +1092,7 @@ if (!class_exists('MenuEditor')) {
                                                     $sel = 'selected';
                                                 }
                                             ?>
-                                                <option value="<?php echo $rolename ?>" <?php echo $sel ?>><?php echo $rolename ?></option>
+                                                <option value="<?php echo esc_attr($rolename); ?>" <?php echo esc_attr($sel); ?>><?php echo esc_html($rolename); ?></option>
                                             <?php
                                             }
 
@@ -1102,7 +1104,7 @@ if (!class_exists('MenuEditor')) {
                                                     $sel = 'selected';
                                                 }
                                             ?>
-                                                <option value="<?php echo $username ?>" <?php echo $sel ?>><?php echo $username ?></option>
+                                                <option value="<?php echo esc_attr($username); ?>" <?php echo esc_attr($sel); ?>><?php echo esc_html($username); ?></option>
                                             <?php
                                             }
                                             ?>
@@ -1110,7 +1112,7 @@ if (!class_exists('MenuEditor')) {
 
                                         <script>
                                             jQuery('#menu-editor-adminify-sub-menu-<?php echo esc_attr($menu_id); ?> #<?php echo esc_attr($menu_id); ?>-user-role-types').tokenize2({
-                                                placeholder: '<?php esc_html_e('Select roles or users', 'menuflex') ?>'
+                                                placeholder: '<?php echo esc_html__('Select roles or users', 'menuflex') ?>'
                                             });
                                             jQuery(document).ready(function($) {
                                                 $('#menu-editor-adminify-sub-menu-<?php echo esc_attr($menu_id); ?> #<?php echo esc_attr($menu_id); ?>-user-role-types').on('tokenize:select', function(container) {
@@ -1124,16 +1126,16 @@ if (!class_exists('MenuEditor')) {
                             </div>
                             <div class="columns">
                                 <div class="column">
-                                    <label for=""><?php esc_html_e('Change Link', 'menuflex'); ?></label>
-                                    <input class="sub_menu_setting" name="link" type="url" placeholder="New link" value="<?php echo $link ?>">
+                                    <label for=""><?php echo esc_html__('Change Link', 'menuflex'); ?></label>
+                                    <input class="sub_menu_setting" name="link" type="url" placeholder="New link" value="<?php echo esc_attr($link); ?>">
                                 </div>
                                 <div class="column">
-                                    <label for=""><?php esc_html_e('Set Custom Icon', 'menuflex'); ?></label>
+                                    <label for=""><?php echo esc_html__('Set Custom Icon', 'menuflex'); ?></label>
 
                                     <div class="menu-editor-adminify-icon-picker-wrap menu-editor-adminify-menu-icon-picker adminify-icon-picker-input icon-select-button is-clickable is-pulled-left">
                                         <ul class="icon-picker">
                                             <li class="icon-none" title="None"><i class="dashicons dashicons-dismiss"></i></li>
-                                            <li class="select-icon" title="Icon Library"><i class="<?php echo $this->get_icon(esc_attr($icon), 'dashicons dashicons-external'); ?>"></i></li>
+                                            <li class="select-icon" title="Icon Library"><i class="<?php echo esc_attr($this->get_icon($icon, 'dashicons dashicons-external')); ?>"></i></li>
                                             <input type="hidden" class="sub_menu_setting" name="icon" value="<?php echo esc_attr($icon); ?>">
                                         </ul>
                                     </div>
@@ -1149,33 +1151,27 @@ if (!class_exists('MenuEditor')) {
         }
 
 
-
-
-
         /**
          * Menu Editor Header
          *
          * @return void
          */
         public function render_menu_editor_header()
-        {
-        ?>
-
+        { ?>
             <div class="adminify-menu-editor-help-urls wp-heading-inline is-pulled-left is-flex is-align-items-center">
                 <?php echo Utils::menuflex_help_urls(
-                    'Menu Editor',
-                    'https://wpadminify.com/kb/wordpress-dashboard-menu-editor/',
-                    'https://www.youtube.com/playlist?list=PLqpMw0NsHXV-EKj9Xm1DMGa6FGniHHly8',
-                    'https://www.facebook.com/groups/jeweltheme',
-                    'https://wpadminify.com/support/'
+                    esc_html__( 'Menu Editor', 'menuflex' ),
+                    esc_url_raw('https://wpadminify.com/kb/wordpress-dashboard-menu-editor/'),
+                    esc_url_raw('https://www.youtube.com/playlist?list=PLqpMw0NsHXV-EKj9Xm1DMGa6FGniHHly8'),
+                    esc_url_raw('https://www.facebook.com/groups/jeweltheme'),
+                    esc_url_raw('https://wpadminify.com/support')
                 ); ?>
             </div>
 
 
             <div class="menu-editor-adminify--page--title--actions mt-1 is-pulled-right">
-
                 <button class="page-title-action mr-3 menu-editor-adminify_menu_save_settings">
-                    <?php esc_html_e('Save', 'menuflex'); ?>
+                    <?php echo esc_html__('Save', 'menuflex'); ?>
                 </button>
 
                 <div class="dropdown is-right is-hoverable is-pulled-right">
@@ -1189,14 +1185,14 @@ if (!class_exists('MenuEditor')) {
                     <div class="dropdown-menu" id="dropdown-menu" role="menu">
                         <div class="dropdown-content">
                             <a href="#" class="dropdown-item adminify_export_menu_settings">
-                                <?php echo esc_html_e('Export menu', 'menuflex'); ?>
+                                <?php echo esc_html__('Export menu', 'menuflex'); ?>
                             </a>
                             <input accept=".json" type="file" single="" id="adminify_import_menu">
                             <a class="dropdown-item adminify_import_menu_settings">
-                                <?php echo esc_html_e('Import menu', 'menuflex'); ?>
+                                <?php echo esc_html__('Import menu', 'menuflex'); ?>
                             </a>
                             <a href="#" class="dropdown-item menu_editor_adminify_reset_menu_settings">
-                                <?php echo esc_html_e('Reset menu', 'menuflex'); ?>
+                                <?php echo esc_html__('Reset menu', 'menuflex'); ?>
                             </a>
                         </div>
                     </div>
@@ -1205,7 +1201,7 @@ if (!class_exists('MenuEditor')) {
 
             <div class="menu-editor-adminify-desc">
                 <p>
-                    <?php echo esc_html_e('Edit each menu item\'s name, link, icon and visibility. Drag and drop to rearange the menu. Changes will take effect after page refresh.', 'menuflex'); ?>
+                    <?php echo esc_html__('Edit each menu item\'s name, link, icon and visibility. Drag and drop to rearange the menu. Changes will take effect after page refresh.', 'menuflex'); ?>
                 </p>
                 <p>
                     <svg class="is-pulled-left mr-1" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1214,7 +1210,7 @@ if (!class_exists('MenuEditor')) {
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M8.00065 1.33334C4.31865 1.33334 1.33398 4.31801 1.33398 8.00001C1.33398 11.682 4.31865 14.6667 8.00065 14.6667C11.6827 14.6667 14.6673 11.682 14.6673 8.00001C14.6673 4.31801 11.6827 1.33334 8.00065 1.33334ZM2.66732 8.00001C2.66732 9.4145 3.22922 10.7711 4.22942 11.7712C5.22961 12.7714 6.58616 13.3333 8.00065 13.3333C9.41514 13.3333 10.7717 12.7714 11.7719 11.7712C12.7721 10.7711 13.334 9.4145 13.334 8.00001C13.334 6.58552 12.7721 5.22897 11.7719 4.22877C10.7717 3.22858 9.41514 2.66668 8.00065 2.66668C6.58616 2.66668 5.22961 3.22858 4.22942 4.22877C3.22922 5.22897 2.66732 6.58552 2.66732 8.00001V8.00001Z" fill="#4E4B66" />
                     </svg>
 
-                    <?php esc_html_e('If you have WP Adminify Menu Module disabled, icons and label dividers won\'t change.', 'menuflex'); ?>
+                    <?php echo esc_html__('If you have WP Adminify Menu Module disabled, icons and label dividers won\'t change.', 'menuflex'); ?>
                 </p>
             </div>
 
