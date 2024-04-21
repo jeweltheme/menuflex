@@ -165,7 +165,7 @@ if (!class_exists('VerticalMenu')) {
 
                         <?php $this->get_icon($menu_item) ?>
                         <span class="wp-menu-name" id="adminify-main-topmenu-<?php echo preg_replace("/[^A-Za-z0-9 ]/", '', esc_attr( $menu_item[5])); ?>">
-                            <?php echo esc_html($menu_name); ?>
+                            <?php echo wp_kses_post($menu_name); ?>
                         </span>
                     </a>
 
