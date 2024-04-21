@@ -164,7 +164,9 @@ if (!class_exists('VerticalMenu')) {
                     <a class="<?php echo $classes ?>" href="<?php echo $link ?>">
 
                         <?php $this->get_icon($menu_item) ?>
-                        <span class="wp-menu-name" id="adminify-main-topmenu-<?php echo preg_replace("/[^A-Za-z0-9 ]/", '', $menu_item[5]); ?>"><?php echo $menu_name ?></span>
+                        <span class="wp-menu-name" id="adminify-main-topmenu-<?php echo preg_replace("/[^A-Za-z0-9 ]/", '', esc_attr( $menu_item[5])); ?>">
+                            <?php echo esc_html($menu_name); ?>
+                        </span>
                     </a>
 
                     <?php
@@ -473,7 +475,7 @@ if (!class_exists('VerticalMenu')) {
                 if ($menu_item['icon'] != "") {
 
             ?>
-                    <div class="wp-menu-image <?php echo $menu_item['icon'] ?>"></div>
+                    <div class="wp-menu-image <?php echo esc_attr( $menu_item['icon'] ); ?>"></div>
                 <?php
                     return;
                 }

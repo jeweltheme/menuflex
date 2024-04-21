@@ -99,7 +99,7 @@ if (!class_exists('MenuEditor')) {
 
                 if ($options == "" || !is_array($options)) {
                     $message = __("No options supplied to save", 'menuflex');
-                    echo $this->ajax_error_message($message);
+                    echo wp_kses_post_deep(wp_unslash( $this->ajax_error_message($message) ));
                     die();
                 }
 
@@ -973,7 +973,9 @@ if (!class_exists('MenuEditor')) {
                                                     $sel = 'selected';
                                                 }
                                             ?>
-                                                <option value="<?php echo esc_attr($rolename); ?>" <?php echo esc_attr($sel); ?>><?php echo esc_html($rolename); ?></option>
+                                                <option value="<?php echo esc_attr($rolename); ?>" <?php echo esc_attr($sel); ?>>
+                                                    <?php echo esc_html($rolename); ?>
+                                                </option>
                                             <?php
                                             }
 
@@ -1104,7 +1106,9 @@ if (!class_exists('MenuEditor')) {
                                                     $sel = 'selected';
                                                 }
                                             ?>
-                                                <option value="<?php echo esc_attr($username); ?>" <?php echo esc_attr($sel); ?>><?php echo esc_html($username); ?></option>
+                                                <option value="<?php echo esc_attr($username); ?>" <?php echo esc_attr($sel); ?>>
+                                                    <?php echo esc_html($username); ?>
+                                                </option>
                                             <?php
                                             }
                                             ?>
