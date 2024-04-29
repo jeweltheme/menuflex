@@ -6,10 +6,10 @@ namespace MenuFlex\Inc;
 if (!defined('ABSPATH'))  exit;
 
 /**
- * WP Adminify
- * @package WP Adminify: Menu Editor
+ * Menuflex
+ * @package Menuflex: Menu Editor
  *
- * @author WP Adminify <support@wpadminify.com>
+ * @author Menuflex <support@wpadminify.com>
  */
 
 class MenuEditorAssets extends MenuEditorModel

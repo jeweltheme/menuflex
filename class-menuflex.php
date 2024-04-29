@@ -58,7 +58,7 @@ if (!class_exists('MenuFlex')) {
                         esc_url_raw('https://wpadminify.com/changelogs/'),
                         esc_html__('Changelogs', 'menuflex')
                     ),
-                    'tutorials' => '<a href="https://www.youtube.com/playlist?list=PLqpMw0NsHXV-EKj9Xm1DMGa6FGniHHly8" aria-label="' . esc_attr(__('View WP Adminify Video Tutorials', 'menuflex')) . '" target="_blank">' . esc_html__('Video Tutorials', 'menuflex') . '</a>',
+                    'tutorials' => '<a href="https://www.youtube.com/playlist?list=PLqpMw0NsHXV-EKj9Xm1DMGa6FGniHHly8" aria-label="' . esc_attr(__('View Menuflex Video Tutorials', 'menuflex')) . '" target="_blank">' . esc_html__('Video Tutorials', 'menuflex') . '</a>',
                 ];
 
                 $plugin_meta = array_merge($plugin_meta, $row_meta);

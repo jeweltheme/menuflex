@@ -47,7 +47,7 @@ if (!class_exists('\\MenuFlex\\MenuFlex')) {
     // Autoload
     require_once dirname(__FILE__) . '/vendor/autoload.php';
 
-    // Instantiate WP Adminify Class
+    // Instantiate Menuflex Class
     require_once dirname(__FILE__) . '/class-menuflex.php';
 
     // Activation and Deactivation hooks

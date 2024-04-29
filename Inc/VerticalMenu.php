@@ -42,7 +42,7 @@ if (!class_exists('VerticalMenu')) {
 
         /**
          * Render Admin Menu
-         * @package WP Adminify
+         * @package Menuflex
          * @return void
          */
         public function render_menu_editor_adminify_admin_menu($parent_file)
@@ -79,27 +79,27 @@ if (!class_exists('VerticalMenu')) {
 
                                     <div class="wp_adminify_user-details">
                                         <h4 class="wp_adminify_user-name is-capitalized">
-                                            <a class="has-text-weight-bold" href="<?php echo admin_url('profile.php'); ?>">
+                                            <a class="has-text-weight-bold" href="<?php echo esc_url( admin_url('profile.php') ); ?>">
                                                 <?php echo esc_html($current_user->display_name); ?>
                                             </a>
                                         </h4>
                                         <span class="wp_adminify_user-url">
-                                            <a href="<?php echo admin_url('profile.php'); ?>">
-                                                <?php echo is_email($current_user->user_email); ?>
+                                            <a href="<?php echo esc_url( admin_url('profile.php') ); ?>">
+                                                <?php echo esc_html($current_user->user_email); ?>
                                             </a>
                                         </span>
 
-                                        <a class="logout mt-2" href="<?php echo wp_logout_url(); ?>">
-                                            <?php echo esc_html__('Log Out', WP_ADMINIFY_TD); ?>
+                                        <a class="logout mt-2" href="<?php echo esc_url( wp_logout_url() ); ?>">
+                                            <?php echo esc_html__('Log Out', 'menuflex'); ?>
                                         </a>
                                     </div>
 
                                 <?php } elseif (isset($this->options['menu_layout_settings']['user_info_content']) && $this->options['menu_layout_settings']['user_info_content'] === 'icon') { ?>
                                     <div class="wp_adminify_user-actions">
-                                        <a href="<?php echo admin_url('profile.php'); ?>">
+                                        <a href="<?php echo esc_url( admin_url('profile.php') ); ?>">
                                             <i class="icon-user icons"></i>
                                         </a>
-                                        <a href="<?php echo wp_logout_url(); ?>">
+                                        <a href="<?php echo esc_url( wp_logout_url() ); ?>">
                                             <i class="icon-logout icons"></i>
                                         </a>
                                     </div>
@@ -160,8 +160,8 @@ if (!class_exists('VerticalMenu')) {
 
             ?>
 
-                <li class="<?php echo $classes ?>" id="<?php echo $menu_item[5] ?>">
-                    <a class="<?php echo $classes ?>" href="<?php echo $link ?>">
+                <li class="<?php echo esc_attr($classes); ?>" id="<?php echo esc_attr( $menu_item[5] ); ?>">
+                    <a class="<?php echo esc_attr($classes); ?>" href="<?php echo esc_url( $link ); ?>">
 
                         <?php $this->get_icon($menu_item) ?>
                         <span class="wp-menu-name" id="adminify-main-topmenu-<?php echo preg_replace("/[^A-Za-z0-9 ]/", '', esc_attr( $menu_item[5])); ?>">
@@ -261,7 +261,7 @@ if (!class_exists('VerticalMenu')) {
 
         /**
          * Render Divider
-         * @package WP Adminify
+         * @package Menuflex
          * @return void
          */
         public function render_divider($divider)
@@ -269,7 +269,7 @@ if (!class_exists('VerticalMenu')) {
             if (isset($divider['name'])) {
             ?>
 
-                <li class="wp-adminify-nav-header"><?php echo $divider['name'] ?></li>
+                <li class="wp-adminify-nav-header"><?php echo esc_attr( $divider['name']); ?></li>
                 <li class="wp-adminify-nav-divider divider-placeholder"></li>
 
             <?php
@@ -304,9 +304,9 @@ if (!class_exists('VerticalMenu')) {
 
                     $parent_menu_id = preg_replace("/[^A-Za-z0-9 ]/", '', $sub_menu_link);
                 ?>
-                    <li class="<?php echo $class ?>">
-                        <a class="<?php echo $class ?>" href="<?php echo $link ?>" id="adminify-main-submenu-<?php echo esc_attr($parent_menu_id); ?>">
-                            <?php echo $sub_menu_name ?>
+                    <li class="<?php echo esc_attr( $class ); ?>">
+                        <a class="<?php echo esc_attr( $class ); ?>" href="<?php echo esc_url( $link ); ?>" id="adminify-main-submenu-<?php echo esc_attr($parent_menu_id); ?>">
+                            <?php echo esc_attr($sub_menu_name); ?>
                         </a>
                     </li>
                 <?php
@@ -483,9 +483,9 @@ if (!class_exists('VerticalMenu')) {
 
             if (isset($icons[$wpicon])) {
 
-                //ICON IS SET BY WP ADMINIFY
+                //ICON IS SET BY Menuflex
                 ?>
-                <div class="wp-menu-image <?php echo $icons[$wpicon] ?>"></div>
+                <div class="wp-menu-image <?php echo esc_attr($icons[$wpicon]); ?>"></div>
                 <?php
                 return;
             }
@@ -495,14 +495,14 @@ if (!class_exists('VerticalMenu')) {
 
                     ///ICON IS IMAGE
                 ?>
-                    <div class="wp-adminify-icon wp-adminify-icon-image wp-adminify-icon-button" style="background-image: url(<?php echo $wpicon ?>);"></div>
+                    <div class="wp-adminify-icon wp-adminify-icon-image wp-adminify-icon-button" style="background-image: url(<?php echo esc_url( $wpicon ) ; ?>);"></div>
                 <?php
 
                 } else {
 
                     ///ICON IS ::BEFORE ELEMENT
                 ?>
-                    <div class="wp-menu-image dashicons-before <?php echo $wpicon ?> wp-adminify-icon wp-adminify-icon-image wp-adminify-icon-button"></div>
+                    <div class="wp-menu-image dashicons-before <?php echo esc_attr( $wpicon ); ?> wp-adminify-icon wp-adminify-icon-image wp-adminify-icon-button"></div>
 <?php
 
                 }
@@ -518,7 +518,7 @@ if (!class_exists('VerticalMenu')) {
         public function render_output_adminify_admin_menu()
         {
             global $menu, $submenu, $wp_adminify_menu;
-            echo $wp_adminify_menu;
+            echo wp_kses_post($wp_adminify_menu);
             $menu    = $this->original_menu;
             $submenu = $this->original_submenu;
         }

@@ -1,4 +1,4 @@
-// Menu Editor JS Codes by WP Adminify
+// Menu Editor JS Codes by Menuflex
 
 (function ($)
 {

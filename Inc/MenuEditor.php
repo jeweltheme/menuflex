@@ -6,10 +6,10 @@ namespace MenuFlex\Inc;
 if (!defined('ABSPATH'))  exit;
 
 /**
- * WP Adminify
- * @package WP Adminify: Menu Editor
+ * Menuflex
+ * @package Menuflex: Menu Editor
  *
- * @author WP Adminify <support@wpadminify.com>
+ * @author Menuflex <support@wpadminify.com>
  */
 
 if (!class_exists('MenuEditor')) {
@@ -99,7 +99,7 @@ if (!class_exists('MenuEditor')) {
 
                 if ($options == "" || !is_array($options)) {
                     $message = __("No options supplied to save", 'menuflex');
-                    echo wp_kses_post_deep(wp_unslash( $this->ajax_error_message($message) ));
+                    $this->ajax_error_message($message);
                     die();
                 }
 
@@ -112,7 +112,7 @@ if (!class_exists('MenuEditor')) {
                     die();
                 } else {
                     $message = __("Something went wrong", 'menuflex');
-                    echo $this->ajax_error_message($message);
+                    $this->ajax_error_message($message);
                     die();
                 }
             }
@@ -140,7 +140,7 @@ if (!class_exists('MenuEditor')) {
                     die();
                 } else {
                     $message = __("Something went wrong", 'menuflex');
-                    echo $this->ajax_error_message($message);
+                    $this->ajax_error_message($message);
                     die();
                 }
             }
@@ -1214,7 +1214,7 @@ if (!class_exists('MenuEditor')) {
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M8.00065 1.33334C4.31865 1.33334 1.33398 4.31801 1.33398 8.00001C1.33398 11.682 4.31865 14.6667 8.00065 14.6667C11.6827 14.6667 14.6673 11.682 14.6673 8.00001C14.6673 4.31801 11.6827 1.33334 8.00065 1.33334ZM2.66732 8.00001C2.66732 9.4145 3.22922 10.7711 4.22942 11.7712C5.22961 12.7714 6.58616 13.3333 8.00065 13.3333C9.41514 13.3333 10.7717 12.7714 11.7719 11.7712C12.7721 10.7711 13.334 9.4145 13.334 8.00001C13.334 6.58552 12.7721 5.22897 11.7719 4.22877C10.7717 3.22858 9.41514 2.66668 8.00065 2.66668C6.58616 2.66668 5.22961 3.22858 4.22942 4.22877C3.22922 5.22897 2.66732 6.58552 2.66732 8.00001V8.00001Z" fill="#4E4B66" />
                     </svg>
 
-                    <?php echo esc_html__('If you have WP Adminify Menu Module disabled, icons and label dividers won\'t change.', 'menuflex'); ?>
+                    <?php echo esc_html__('If you have Menuflex Menu Module disabled, icons and label dividers won\'t change.', 'menuflex'); ?>
                 </p>
             </div>
 
