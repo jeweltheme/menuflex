@@ -39,7 +39,7 @@ class Utils
     }
 
 
-    public static function menuflex_help_urls($module_name = '', $docs = '', $youtube = '', $facebook_grp = '', $support = '')
+    public static function menuflex_help_urls($module_name = '', $docs_url = '', $youtube_url = '', $facebook_grp = '', $support = '')
     {
         $help_content = '';
 
@@ -51,17 +51,17 @@ class Utils
         }
 
         // Docs
-        if (empty($docs)) {
-            $docs = 'https://wpadminify.com/kb';
+        if (empty($docs_url)) {
+            $docs_url = 'https://wpadminify.com/kb';
         } else {
-            $docs = $docs;
+            $docs_url = $docs_url;
         }
 
         // youtube
-        if (empty($youtube)) {
-            $youtube = 'https://www.youtube.com/playlist?list=PLqpMw0NsHXV-EKj9Xm1DMGa6FGniHHly8';
+        if (empty($youtube_url)) {
+            $youtube_url = 'https://www.youtube.com/playlist?list=PLqpMw0NsHXV-EKj9Xm1DMGa6FGniHHly8';
         } else {
-            $youtube = $youtube;
+            $youtube_url = $youtube_url;
         }
 
         // facebook_grp
@@ -80,13 +80,19 @@ class Utils
 
 
         $help_content = sprintf(
-            __('%1$s <a class="adminify-docs-url" href="%2$s" target="_blank"> ' . Utils::docs_icon() . ' Docs</a>
-                <a  class="adminify-video-url" href="%3$s" target="_blank">' . Utils::video_tutorials_icon() . ' Video Tutorial</a> <a  class="adminify-fbgroup-url" href="%4$s" target="_blank">' . Utils::fbgroup_icon() . ' Facebook Group</a> <a  class="adminify-support-url" href="%5$s" target="_blank">' . Utils::support_icon() . ' Support</a>', 'menuflex'),
-            $module_name,
-            $docs,
-            $youtube,
-            $facebook_grp,
-            $support
+            __('%1$s <a class="menuflex-docs-url" href="%2$s" target="_blank"> ' . Utils::docs_icon() . ' %3$s</a>
+                <a  class="menuflex-video-url" href="%4$s" target="_blank">' . Utils::video_tutorials_icon() . ' %5$s</a>
+                <a  class="menuflex-fbgroup-url" href="%6$s" target="_blank">' . Utils::fbgroup_icon() . ' %7$s</a>
+                <a  class="menuflex-support-url" href="%8$s" target="_blank">' . Utils::support_icon() . ' %9$s</a>', 'menuflex'),
+            esc_html( $module_name ),
+            esc_url( $docs_url ),
+            esc_html__( 'Docs', 'menuflex' ),
+            esc_url( $youtube_url ),
+            esc_html__( 'Video Tutorial', 'menuflex' ),
+            esc_url( $facebook_grp ),
+            esc_html__( 'Facebook Group', 'menuflex' ),
+            esc_url( $support ),
+            esc_html__( 'Support', 'menuflex' )
         );
         return $help_content;
     }
