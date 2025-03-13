@@ -630,9 +630,9 @@ if (!class_exists('MenuEditor')) {
             add_menu_page(
                 esc_html__('Menu Editor by WP Adminify', 'menuflex'),
                 esc_html__('Menu Editor', 'menuflex'),
-                apply_filters('jltwp_adminify_capability', 'manage_options'),
+                apply_filters('menuflex_capability', 'manage_options'),
                 'menuflex',
-                [$this, 'jltwp_adminify_menu_editor_contents'],
+                [$this, 'menuflex_menu_editor_contents'],
                 MENUFLEX_ASSETS_IMAGE . 'menu-icon.png',
                 30
             );
@@ -851,9 +851,9 @@ if (!class_exists('MenuEditor')) {
                                                 <li class="icon-none" title="None"><i class="dashicons dashicons-dismiss"></i></li>
                                                 <li class="select-icon" title="Icon Library">
                                                     <?php
-                                                    $adminify_icon = MENUFLEX_ASSETS_IMAGE . 'menu-icon.png';
                                                     if (empty($icons[$default_icons])) {
-                                                        echo '<i class=""><img src=' . $adminify_icon . ' ></i>';
+                                                        $adminify_icon = MENUFLEX_ASSETS_IMAGE . 'menu-icon.png';
+                                                        echo '<i class=""><img src=' . esc_url( $adminify_icon ) . ' ></i>';
                                                     } else { ?>
                                                         <i class="<?php echo esc_attr($this->get_icon($icon, $icons[$default_icons]) ); ?>"></i>
                                                     <?php } ?>

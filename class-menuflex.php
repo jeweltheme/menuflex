@@ -88,13 +88,13 @@ if (!class_exists('MenuFlex')) {
         // Activation Hook
         public static function menu_editor_adminify_activation_hook()
         {
-            $current_adminify_version = get_option('menu_editor_adminify_version', null);
+            $current_adminify_version = get_option('menuflex_plugin_version', null);
 
-            if (get_option('adminify_menu_editor_activation_time') === false)
-                update_option('adminify_menu_editor_activation_time', strtotime("now"));
+            if (get_option('menuflex_menu_editor_activation_time') === false)
+                update_option('menuflex_menu_editor_activation_time', strtotime("now"));
 
             if (is_null($current_adminify_version)) {
-                update_option('menu_editor_adminify_version', self::VERSION);
+                update_option('menuflex_plugin_version', self::VERSION);
             }
         }
 
@@ -102,8 +102,8 @@ if (!class_exists('MenuFlex')) {
         // Deactivation Hook
         public static function menu_editor_adminify_deactivation_hook()
         {
-            delete_option('adminify_menu_editor_activation_time');
-            delete_option('adminify_menu_editor_customizer_flush_url');
+            delete_option('menuflex_menu_editor_activation_time');
+            delete_option('menuflex_menu_editor_customizer_flush_url');
         }
 
         /**

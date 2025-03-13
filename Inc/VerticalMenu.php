@@ -47,7 +47,7 @@ if (!class_exists('VerticalMenu')) {
          */
         public function render_menu_editor_adminify_admin_menu($parent_file)
         {
-            global $menu, $pagenow, $wp_adminify_menu;
+            global $menu, $pagenow, $menuflex_menu;
             $current_user = wp_get_current_user();
             $this->original_menu = $menu;
             $this->options = (array) MenuEditorOptions::get_instance()->get();
@@ -117,9 +117,9 @@ if (!class_exists('VerticalMenu')) {
 
 
             <?php
-            $wp_adminify_menu = ob_get_clean();
+            $menuflex_menu = ob_get_clean();
 
-            return $wp_adminify_menu . $parent_file;
+            return $menuflex_menu . $parent_file;
         }
 
 
@@ -517,8 +517,8 @@ if (!class_exists('VerticalMenu')) {
          */
         public function render_output_adminify_admin_menu()
         {
-            global $menu, $submenu, $wp_adminify_menu;
-            echo wp_kses_post($wp_adminify_menu);
+            global $menu, $submenu, $menuflex_menu;
+            echo wp_kses_post($menuflex_menu);
             $menu    = $this->original_menu;
             $submenu = $this->original_submenu;
         }
